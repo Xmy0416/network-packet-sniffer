@@ -59,9 +59,9 @@ class SniffThread(QThread):
         self.emit(QtCore.SIGNAL('settext(QString,QString)'), psummary, content)
         # self.emit(QtCore.SIGNAL('printhexa(QString)'), content)    
 
-    def run(self, f):
+    def run(self):
         i = 0
-        pkts = sniff(filter=f, timeout=50, prn=self.capturepackets)
+        pkts = sniff(timeout=50, prn=self.capturepackets)
         while pkts:
             psummary = 'Packet #{}: {} ==> {}'.format(counter, pkts[i][1].src, pkts[i][1].dst)
             print(psummary)
